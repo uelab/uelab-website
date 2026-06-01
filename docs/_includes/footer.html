@@ -1,0 +1,117 @@
+<footer class="site-footer">
+    <div class="container">
+
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-brand-header">
+                    <img class="footer-logo" src="{{ '/assets/img/uelab-logo.png' | relative_url }}"
+                         alt="User Empowerment Lab">
+                    <h5>User Empowerment Lab</h5>
+                </div>
+
+                <div class="footer-brand-content">
+                    <p>
+                        Making technology a tool for building a meaningful life.
+                    </p>
+                </div>
+                <div class="footer-brand-content">
+                    <div class="footer-social">
+                        <a href="mailto:uelab@uw.edu"><i class="far fa-envelope"></i></a>
+                    </div>
+                    <div class="footer-accent" style="padding-left: 8px;">
+                        <a href="mailto:uelab@uw.edu">uelab@uw.edu</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="footer-links">
+
+                <h6>Explore</h6>
+                {% for item in site.data.nav-bar %}
+                <a href="{{ item.link | relative_url }}">
+                    {{ item.name }}
+                </a>
+                {% endfor %}
+            </div>
+
+
+            <div class="footer-links">
+
+                <h6>Research Areas</h6>
+                {% for item in site.research-areas limit: 4 %}
+                <a href="{{ item.url | relative_url }}">
+                    {{ item.name }}
+                </a>
+                {% endfor %}
+
+                <a class="footer-accent"
+                    href="{{ "/research-areas.html" | relative_url }}">
+                    See all →
+                </a>
+            </div>
+
+
+            <div class="footer-links">
+
+                <h6>Resources</h6>
+
+                <a href="https://www.washington.edu/giving/make-a-gift/">Support the UE Lab</a>
+                <a href="https://ischool.uw.edu/programs/phd">UW iSchool PhD Program</a>
+                <a href="https://drive.google.com/drive/u/0/folders/1-RYHAxivJnr5KwtcCF4hd5vsDsHos8WJ" target="_blank">Internal Lab Drive</a>
+                <a href="https://digitalyouth.uw.edu/projects-youth-advisory-board/">Youth Advisory Board</a>
+                <a href="/news">Press & Media Inquiries</a>
+
+            </div>
+
+
+            <div class="footer-newsletter">
+                <h6>Participate</h6>
+                <p>
+                    Interested in participating in research studies? Submit your email to learn more.
+                </p>
+
+                <input type="email"
+                        placeholder="Enter your email">
+
+                <button>
+                    Submit
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Logos -->
+
+        <div class="footer-values footer-affiliates">
+            <a href="https://ischool.uw.edu/" class="affiliate-logo">
+                <img class="footer-logo" src="{{ '/assets/img/logos/iSchool.png' | relative_url }}"
+                     alt="iSchool Logo" />
+            </a>
+            <a href="https://dub.washington.edu/" class="affiliate-logo">
+                <img class="footer-logo" src="{{ '/assets/img/logos/dubPurple.png' | relative_url }}"
+                     alt="iSchool Logo" />
+            </a>
+            <a href="https://digitalyouth.uw.edu/" class="affiliate-logo">
+                <img class="footer-logo" src="{{ '/assets/img/logos/cdy.png' | relative_url }}"
+                     alt="iSchool Logo" />
+            </a>
+
+        </div>
+
+
+        <!-- Bottom -->
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 User Empowerment Lab
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>

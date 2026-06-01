@@ -1,0 +1,52 @@
+{% assign pi = site.people | where_exp: "item", "item.role == 'Principal Investigator'" %}
+
+{% assign phd-students = site.people | where: "role", "PhD Student" %}
+{% assign candidates = phd-students | where: "status", "candidate" | sort: "graduation-year" | reverse %}
+{% assign students = phd-students | where: "status", "student" | sort: "graduation-year" | reverse %}
+{% assign current-phd-students = candidates | concat: students %}
+{% assign all-research-assistants = site.people | where_exp: "item", "item.role == 'Graduate Research Assistant'" %}
+{% assign current-research-assistants = all-research-assistants | where_exp: "item", "item.status == 'student'" %}
+
+{% assign current-undergrads = site.people | where_exp: "item", "item.status == 'student'" | where_exp: "item", "item.role == 'Undergraduate Research Assistant'" | sort: "graduation-year" | reverse %}
+
+{% assign alumni = site.people | where_exp: "item", "item.status == 'alum'" %}
+{% assign phd-alumni = alumni | where_exp: "item", "item.role == 'PhD Student'" | sort: "graduation-year" | reverse %}
+{% assign grad-alumni = alumni | where_exp: "item", "item.role == 'Graduate Research Assistant'" | sort: "graduation-year" | reverse %}
+{% assign undergrad-alumni = alumni | where_exp: "item", "item.role == 'Undergraduate Research Assistant'" | sort: "graduation-year" | reverse %}
+
+{% assign faculty = site.people | where_exp: "item", "item.role == 'Faculty'" | sort: "last-name" %}
+{% assign scientists = site.people | where_exp: "item", "item.role == 'Scientist'" | sort: "last-name" %}
+{% assign collaborators = faculty | concat: scientists | sort: "last-name" %}
+
+<section class="list-page">
+    <div class="container ">
+
+        <section class="people-section">
+            <h2 class="list-subtitle">Lab Members</h2>
+
+            {% assign current-phd-students = pi | concat: current-phd-students %}
+            {% include people-card-grid.html values=current-phd-students %}
+
+            {% if current-research-assistants.size > 0 %}
+            {% include people-card-grid.html header="Research Assistants" values=current-research-assistants %}
+            {% endif %}
+
+            {% if current-undergrads.size > 0 %}
+            {% include people-card-grid.html header="Undergraduates" values=current-undergrads %}
+            {% endif %}
+        </section>
+
+        <section class="people-section">
+            <h2 class="list-subtitle">Faculty and Scientist Collaborators</h2>
+            {% include people-card-grid.html values=collaborators %}
+        </section>
+
+        <section class="people-section">
+            <h2 class="list-subtitle">Alumni</h2>
+
+            {% include people-card-grid.html header="PhD Advisees" values=phd-alumni %}
+            {% include people-card-grid.html header="Graduate Research Assistants" values=grad-alumni %}
+            {% include people-columns.html header="Undergraduate Research Assistants" values=undergrad-alumni %}
+        </section>
+    </div>
+</section>

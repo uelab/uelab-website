@@ -1,0 +1,34 @@
+<article class="news-card">
+    {% assign card-url = include.news-item.url | relative_url %}
+    {% if include.news-item.expand == false %}
+        {% assign card-url = include.news-item.full-coverage-link %}
+    {% endif %}
+
+    <a href="{{ card-url }}" target="_blank" rel="noopener noreferrer" class="news-card-image-link">
+        <img src="{{ '/assets/img/news/' | append: include.news-item.image | relative_url }}"
+             alt="{{ include.news-item.title }}"
+             class="news-card-image">
+    </a>
+
+    <div class="news-card-date">
+        <span class="news-card-month">
+            {{ include.news-item.date | date: "%b" | upcase }}
+        </span>
+
+        <span class="news-card-day">
+            {{ include.news-item.date | date: "%Y" }}
+        </span>
+    </div>
+
+    <div class="news-card-body">
+        <h3 class="news-card-title">
+            <a href="{{ card-url }}" target="_blank" rel="noopener noreferrer">
+                {{ include.news-item.title }}
+            </a>
+        </h3>
+
+        <a class="heavy-learn-more-link" href="{{ card-url }}" target="_blank" rel="noopener noreferrer">
+            Read more →
+        </a>
+    </div>
+</article>

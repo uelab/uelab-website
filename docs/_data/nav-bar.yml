@@ -1,0 +1,12 @@
+- name: Home
+  link: /
+- name: Research Areas
+  link: /research-areas.html
+- name: Publications
+  link: /publications.html
+- name: People
+  link: /people.html
+- name: News
+  link: /news.html
+- name: Contact
+  link: https://docs.google.com/forms/d/e/1FAIpQLSfNIseWS7hjxHFwp_TxGdZKIH2_NMGTiZAbWUX2oDI82xPKhQ/viewform?usp=sharing&ouid=116513235311036588597

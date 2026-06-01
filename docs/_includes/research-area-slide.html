@@ -1,0 +1,40 @@
+{% assign research-area = include.research-area %}
+{% assign color = include.color %}
+{% assign backgroundimage = include.background-image %}
+{% assign text-side = include.text-side %}
+{% assign iconcolor = include.icon-color %}
+
+
+<div class="slide">
+    <div class="slide-grid position-relative" style="background-image: url('{{ "/assets/img/researchareas/" | append: backgroundimage | relative_url }}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;">
+
+        {% if text-side == 0 %}
+        <div class="slide-image">
+            <img src="{{ "/assets/img/researchareas/" | append: research-area.image | relative_url }}" alt="{{ research-area.name }} image" class="slide-image-content">
+        </div>
+
+        <div class="slide-text">
+            <div class="slide-icon {{ iconcolor }}"><i class="{{ research-area.icon }}"></i></div>
+            <h2>{{ research-area.name }}</h2>
+            <p class="slide-summary">{{ research-area.summary }}</p>
+            <p class="heavy-learn-more-link"><a class="stretched-link" href="{{ include.research-area.url | relative_url }}">Learn more →</a></p>
+        </div>
+        {% else %}
+        <div class="slide-text">
+            <div class="slide-icon {{ iconcolor }}"><i class="{{ research-area.icon }}"></i></div>
+            <h2>{{ research-area.name }}</h2>
+            <p class="slide-summary">{{ research-area.summary }}</p>
+            <p class="heavy-learn-more-link"><a class="stretched-link" href="{{ include.research-area.url | relative_url }}">Learn more →</a></p>
+        </div>
+        <div class="slide-image">
+            <img src="{{ "/assets/img/researchareas/" | append: research-area.image | relative_url }}" alt="{{ research-area.name }} image" class="slide-image-content">
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+

@@ -1,0 +1,11 @@
+{% assign research-area = include.research-area %}
+
+<a href="{{ research-area.url | relative_url }}" class="research-card-link">
+    <div class="card p-1 m-1 research-carousel-item-body" style="width: 22rem;" onclick="window.location='{{ research-area.url | relative_url }}'">
+        <img class="card-img-top img-fluid" style="height: 12rem; width: 100%; object-fit: cover; filter: opacity(0.5); " src="{{ '/assets/img/researchareas/' | append: research-area.image | relative_url }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ include.research-area.name }}</h5>
+            <span class="card-link">Learn more</span>
+        </div>
+    </div>
+</a>

@@ -1,0 +1,181 @@
+---
+layout: default
+---
+
+{% assign person = page %}
+{% assign news = site.news %}
+{% assign related-news = "" | split: "" %}
+{% for news-item in news %}
+    {% if news-item.lab-members contains person.slug %}
+        {% assign related-news = related-news | push: news-item %}
+    {% endif %}
+{% endfor %}
+{% assign related-news = related-news | sort: date | reverse %}
+
+{% assign publications = site.publications | sort: "year" | reverse %}
+{% assign has-papers=false %}
+{% for pub in publications %}
+    {% if pub.authors contains person.slug %}
+      {% assign has-papers = true %}
+    {% endif %}
+{% endfor %}
+
+{% assign bio-expandable = true %}
+{% assign content-size = content | size %}
+{% if content-size < 600 %}
+    {% assign bio-expandable = false %}
+{% endif %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 text-center">
+                        {% if person.image != nil %}
+                        <img class="rounded-circle img-fluid"
+                             style="max-width: 12rem"
+                             src="{{ '/assets/img/people/' | append: person.image | relative_url }}"
+                             alt="Picture of {{person.name}}">
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-8 person-bio">
+                        <h3 class="section-header">{{ person.name }}</h3>
+
+                        <div class="person-meta">
+
+                            <span class="person-role">
+                                {% if person.first-position-title == nil %}
+                                {{ person.title }}
+                                {% else %}
+                                {{ person.first-position-title }}
+                                {% endif %}
+                            </span>
+
+                            <span class="person-divider">•</span>
+
+                            <span class="person-institution">
+                                {% if person.first-position-institution == nil %}
+                                {{ person.institution }}
+                                {% else %}
+                                {{ person.first-position-institution }}
+                                {% endif %}
+                            </span>
+                        </div>
+
+                        <div class="person-links">
+                            {% if person.website != nil %}
+                            <a href="{{person.website}}">
+                                <i class="fas fa-globe"></i>
+                                <span>Website</span>
+                            </a>
+                            {% endif %}
+
+                            {% if person.github-link != nil %}
+                            <a href="{{person.github-link}}">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                            {% endif %}
+
+                            {% if person.twitter-link != nil %}
+                            <a href="{{person.twitter-link}}">
+                                <i class="fab fa-twitter"></i>
+                                <span>Twitter</span>
+                            </a>
+                            {% endif %}
+
+                            {% if person.linkedin-link != nil %}
+                            <a href="{{person.linkedin-link}}">
+                                <i class="fab fa-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            {% endif %}
+
+                            {% if person.cv-link != nil %}
+                            <a href="{{person.cv-link}}">
+                                <i class="fas fa-file"></i>
+                                <span>CV</span>
+                            </a>
+                            {% endif %}
+                            {% if person.email-link != nil %}
+                            <a href="mailto:{{person.email-link}}">
+                                <i class="fas fa-envelope"></i>
+                                <span>Email</span>
+                            </a>
+                            {% endif %}
+                        </div>
+
+                        {% if bio-expandable == true %}
+                        <div class="bio-preview" id="bioPreview">
+                        {% else %}
+                        <div class="bio-preview.expanded" id="bioPreview">
+                        {% endif %}
+                            <div class="bio-text">
+                                {{ content | markdownify }}
+                            </div>
+                        </div>
+
+                        {% if bio-expandable == true %}
+                        <button class="bio-toggle" onclick="toggleBio(this)">
+                            See full bio ↓
+                        </button>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            {% if related-news.size > 0 %}
+            <aside class="person-news-sidebar">
+                <h3>Recent News about {{person.first-name}}</h3>
+
+                {% for related-news-item in related-news limit:3 %}
+
+                {% if related-news-item.expand == true %}
+                <a class="sidebar-news-item" href="{{ related-news-item.url | relative_url }}">
+                    <span class="sidebar-news-date">{{ related-news-item.date | date: "%B %Y" }}</span>
+                    <span class="sidebar-news-title">{{ related-news-item.title }}</span>
+                </a>
+                {% elsif related-news-item.full-coverage-link != blank %}
+                <a class="sidebar-news-item" href="{{ related-news-item.full-coverage-link }}" target="_blank">
+                    <span class="sidebar-news-date">{{ related-news-item.date | date: "%B %Y" }}</span>
+                    <span class="sidebar-news-title">{{ related-news-item.title }}</span>
+                </a>
+                {% else %}
+                <span class="sidebar-news-date">{{ related-news-item.date | date: "%B %Y" }}</span>
+                <span class="sidebar-news-title">{{ related-news-item.title }}</span>
+                {% endif %}
+                {% endfor %}
+
+                <a class="sidebar-news-link" href="{{ "/news.html" | relative_url }}">
+                    See all news →
+                </a>
+            </aside>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row" style="margin-bottom:40px;">
+        {% if has-papers %}
+        <h3 class="section-header mt-5">Publications</h3>
+        {% for pub in publications %}
+        {% if pub.authors contains person.slug %}
+        <div>
+            {% include paper-article.html paper=pub %}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+
+</div>
+
+<script>function toggleBio(button) {
+  const bio = document.getElementById('bioPreview');
+  const expanded = bio.classList.toggle('expanded');
+
+  button.textContent = expanded
+    ? 'Show less ↑'
+    : 'See full bio ↓';
+}</script>

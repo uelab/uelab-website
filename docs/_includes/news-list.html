@@ -1,0 +1,35 @@
+{% assign recent_news = include.values | sort: "date" | reverse %}
+
+<!-- Obtain list of years papers were published -->
+{% assign news_years = recent_news | map: "year" %}
+{% assign news_years = news_years | uniq %}
+
+{% assign news_years = "" | split: "" %}
+
+{% for news in recent_news %}
+  {% assign y = news.date | date: "%Y" %}
+  {% assign news_years = news_years | push: y %}
+{% endfor %}
+
+{% assign news_years = news_years | uniq %}
+
+
+<section class="news-list-page">
+    <div class="container">
+        <h1 class="list-title">{{ include.header }}</h1>
+
+        {% for news in recent_news %}
+        <article class="simple-news-item">
+            <div class="simple-news-date">
+                {{ news.date | date: "%b %Y" | upcase }}
+            </div>
+
+            <div class="simple-news-marker"></div>
+
+            <div>{% include news-item-list-item.html news-item=news %}</div>
+
+        </article>
+        {% endfor %}
+
+    </div>
+</section>

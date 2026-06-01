@@ -1,0 +1,12 @@
+<div class="container-fluid mt-4 px-3 pb-3">
+    {% if include.header != nil %}
+    <h4 class="section-header">{{ include.header }}</h4>
+    {% endif %}
+    <div class="row row-cols-auto gx-4 gy-0">
+        {% for value in include.values %}
+        <div class="col d-flex">
+            {% include people-card.html member=value %}
+        </div>
+        {% endfor %}
+    </div>
+</div>

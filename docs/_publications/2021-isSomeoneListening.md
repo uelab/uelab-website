@@ -1,0 +1,15 @@
+---
+title: Is Someone Listening? Audio Related Privacy Perceptions and Design Recommendations from Guardians, Pragmatists, and Cynics
+authors: [julia-boulter, emily-bascom, ashley-boone, alexis-hiniker]
+venue: Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies (IMWUT), 5(3):1-23, 2021
+keywords: []
+download-link: http://faculty.washington.edu/alexisr/isSomeoneListening.pdf
+citation: #
+research-areas: [user-privacy, dark-patterns]
+publicationtype: 
+doi: 10.1145/3478091
+video: https://www.youtube.com/watch?v=t8wAUtUV5V8
+image: isSomeoneListening.avif
+year: 2021
+award: 
+---

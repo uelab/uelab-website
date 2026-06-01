@@ -1,0 +1,89 @@
+<article class="publication-card">
+
+    <div class="pub-thumbnail">
+        <a href="{{ include.paper.download-link }}" target="_blank" class="pub-thumbnail-link">
+            <img src="{{ '/assets/img/papers/' | append: include.paper.image | relative_url }}"
+                 alt="{{include.paper.title}}"
+                 class="pub-thumbnail-image">
+        </a>
+    </div>
+
+    <div class="pub-info">
+
+        <!-- Title -->
+        <a href="{{ include.paper.download-link }}" target="_blank">
+            <h3 class="artifact-title pub-title">{{include.paper.title}}</h3>
+        </a>
+
+        <!-- Authors -->
+        <p class="pub-authors line-clamp">
+            {% assign lastauthor = include.paper.authors | last %}
+            {% for authorid in include.paper.authors %}
+            {% assign labauthor = site.people | where_exp: "item", "item.slug == authorid" | first %}
+            {% if labauthor != nil %}<a href="{{ labauthor.url | relative_url }}">{{labauthor.name}}</a>{% if authorid != lastauthor %},{% else %}{% endif %}
+            {% else %}
+            {{authorid}}{% if authorid != lastauthor %},{% else %}{% endif %}
+            {% endif %}
+            {% endfor %}
+        </p>
+
+        <!-- Venue, acceptance rate, and award -->
+        <p class="pub-stats line-clamp-one-line">
+
+            <span class="pub-venue">
+                {{include.paper.venue}}.
+            </span>
+
+            {% if include.paper.acceptance-rate != nil %}
+            <span class="pub-acceptance-rate">
+                Acceptance rate: {{include.paper.acceptance-rate}}.
+            </span>
+            {% endif %}
+        </p>
+
+        {% if include.paper.award != nil %}
+        <p class="pub-stats line-clamp-one-line">
+            <span class="pub-award">
+                <span class="pub-award-icon">
+                    <img src="{{ '/assets/img/prize-badge.avif' | relative_url }}" height="20" alt="{{include.paper.award}}">
+                </span>
+                <span class="pub-award-text"> {{include.paper.award}} </span>
+            </span>
+        </p>
+        {% endif %}
+
+    </div>
+    <!-- Download links in different formats -->
+    <div class="publication-links-side">
+        <a href="{{ include.paper.download-link }}" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+            </svg> PDF
+        </a>
+
+        {% if include.paper.doi != nil %}
+        <a href="https://doi.org/{{ include.paper.doi }}" target="_blank">↗ DOI</a>
+        {% endif %}
+
+        {% if include.paper.video != nil %}
+        <a href="{{ include.paper.video }}" target="_blank">
+            <svg width="14"
+                 height="14"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round">
+
+                <polygon points="5 3 19 12 5 21 5 3" />
+
+            </svg> Video</a>
+        {% endif %}
+
+        {% if include.paper.code != nil %}
+        <a href="{{ include.paper.code }}" target="_blank">⌘ Code</a>
+        {% endif %}
+    </div>
+</article>

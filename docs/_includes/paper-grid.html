@@ -1,0 +1,24 @@
+{% assign recent_papers = include.values | sort: "year" | reverse %}
+
+<div class="container">
+    <h3 class="section-header p-2">{{ include.header }}</h3>
+        
+    <div class="publication-list">
+        {% for paper in recent_papers %}
+            {% assign is_hidden = false %}
+
+            {% if forloop.index0 < 3 %}
+            <div class="publication-item">
+                {% include paper-article.html paper=paper %}
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% if include.landing %}
+    <div class="row">
+        <div class="col-lg-12 py-2 px-5 d-flex justify-content-end">
+            <a href="{{ "/publications.html" | relative_url }}">See All Papers →</a>
+        </div>
+    </div>
+    {% endif %}
+</div>

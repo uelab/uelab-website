@@ -1,0 +1,51 @@
+
+{% assign research_areas = include.values %}
+
+<div class="container">
+    <section class="list-page">
+        <div class="publications-intro">
+            <h1 class="list-title">{{ include.header }}</h1>
+            <!--<p class="publications-subtitle">[Add preamble]</p>-->
+        </div>
+
+        {% include research-area-navbar.html header="Research Areas" values=research_areas %}
+
+        {% for value in research_areas %}
+        
+          {% assign mod = forloop.index0 | modulo: 3 %}
+          {% assign watercolor = "watercolorblueOpacity.jpg" %}
+          {% assign iconcolor = "blueicon" %}
+
+          {% case mod %}
+
+            {% when 0 %}
+              {% assign watercolor = "watercolorgreenOpacity.jpg" %}
+              {% assign iconcolor = "greenicon" %}
+
+            {% when 1 %}
+              {% assign watercolor = "watercolorpinkOpacity.jpg" %}
+              {% assign iconcolor = "pinkicon" %}
+
+            {% else %}
+              {% assign watercolor = "watercolorblueOpacity.jpg" %}
+              {% assign iconcolor = "blueicon" %}
+
+          {% endcase %}
+
+          <section id="slide-{{value.slug}}">
+              {% assign text-side = forloop.index0 | modulo: 2 %}
+              {% include research-area-slide.html research-area=value background-image=watercolor text-side=text-side icon-color=iconcolor %}
+          </section>
+        {% endfor %}
+    </section>
+</div>
+
+<script>document.querySelectorAll('.research-subnav a').forEach(link => {
+  link.addEventListener('click', function () {
+    document
+      .querySelectorAll('.research-subnav a')
+      .forEach(item => item.classList.remove('active'));
+
+    this.classList.add('active');
+  });
+});</script>

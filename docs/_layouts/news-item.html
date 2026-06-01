@@ -1,0 +1,148 @@
+---
+layout: default
+---
+
+{% assign news-item = page %}
+
+<section class="news-detail-page">
+    <div class="container">
+
+        <nav class="research-breadcrumb">
+            <a href="{{ '/news.html' | relative_url }}">News</a>
+            <span>›</span>
+            <span>{{ news-item.title }}</span>
+        </nav>
+
+        <header class="news-detail-hero">
+            <div class="news-detail-text">
+                <p class="news-detail-date">{{ news-item.date | date: "%B %Y" }}</p>
+                <h1>{{ news-item.title }}</h1>
+
+                <div class="news-detail-summary">
+                    {{ content | markdownify }}
+                </div>
+
+                <div class="news-detail-people">
+                    {% for person_slug in news-item.lab-members %}
+                    {% assign person = site.people | where: "slug", person_slug | first %}
+                    {% if person %}
+                    <a href="{{ person.url | relative_url }}">{{ person.name }}</a>{% unless forloop.last %}, {% endunless %}
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% if news-item.image %}
+            <div class="news-detail-image-card">
+                <img src="{{ '/assets/img/news/' | append: news-item.image | relative_url }}" alt="{{ news-item.title }}">
+            </div>
+            {% endif %}
+        </header>
+
+        <h3 class="section-header mt-5">Media and Links</h3>
+
+        <!-- Download links in different formats -->
+        {% if news-item.full-coverage-link != nil or news-item.video != nil or news-item.photos != nil %}
+        <div>
+            {% if news-item.full-coverage-link != nil %}
+            <div class="news-extra-section">
+                <div class="news-extras-header">
+                    <i class="fas fa-globe news-extras"></i>
+                    <span class="news-extras">Read more</span>
+                </div>
+
+                <div class="news-extras-content news-extras-content-text">
+                    <a href="{{news-item.full-coverage-link}}" target="_blank">
+                        <span>{{news-item.full-coverage-description}} ↗</span>
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if news-item.video != nil %}
+            <div class="news-extras-section">
+                <div class="news-extras-header">
+                    <i class="fas fa-video news-extras"></i>
+                    <span class="news-extras">Video</span>
+                </div>
+                <div class="news-extras-content">
+                    {% include video-feature-card.html video=news-item.video title=news-item.videotitle description=news-item.videodescription %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if news-item.photos != nil %}
+            <div class="news-extras-section">
+                <div class="news-extras-header">
+                    <i class="fas fa-camera news-extras"></i>
+                    <span class="news-extras">Photos</span>
+                </div>
+                <div class="news-extras-content">
+                    <div class="news-photo-grid">
+                        {% for photo in news-item.photos %}
+                        {% assign photo_url = '/assets/img/news/details/' | append: photo | relative_url %}
+
+                        <button class="news-photo"
+                                type="button"
+                                data-photo-src="{{ photo_url }}">
+
+                            <img src="{{ photo_url }}"
+                                 alt="{{ news-item.title }}"
+                                 class="news-detail-photo" />
+
+                        </button>
+                        {% endfor %}
+                    </div>
+
+                    <div id="photoModal"
+                         class="photo-modal"
+                         onclick="closePhoto()">
+
+                        <img id="modalImage"
+                             class="photo-modal-image"
+                             src=""
+                             alt="Expanded photo">
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+        {% endif %}
+
+        <!-- Relevant Publications -->
+        <h3 class="section-header mt-5">Related Publications</h3>
+        <div class="col pub-info">
+            <p class="pub-authors line-clamp">
+                {% assign pubs = news-item.publications | last %}
+                {% for pubid in news-item.publications %}
+                {% assign pub = site.publications | where_exp: "item", "item.slug == pubid" | first %}
+                {% if pub != nil %}
+                {% include paper-article.html paper=pub %}
+                {% endif %}
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+</section>
+
+<script>document.querySelectorAll('.news-photo').forEach(button => {
+    button.addEventListener('click', () => {
+        const src = button.dataset.photoSrc;
+
+        const modal = document.getElementById('photoModal');
+        const modalImage = document.getElementById('modalImage');
+
+        modalImage.setAttribute('src', src);
+        modal.classList.add('open');
+    });
+});
+
+function closePhoto() {
+    const modal = document.getElementById('photoModal');
+    const modalImage = document.getElementById('modalImage');
+
+    modal.classList.remove('open');
+    modalImage.setAttribute('src', '');
+}</script>

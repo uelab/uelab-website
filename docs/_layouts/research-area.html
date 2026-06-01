@@ -1,0 +1,247 @@
+---
+layout: default
+---
+
+{% assign sorted_papers = site.publications | sort: "year" | reverse %}
+{% assign preview_limit = 6 %}
+{% assign peek_limit = preview_limit | plus: 1 %}
+{% assign grant_preview_limit = 2 %}
+{% assign grant_counter = 0 %}
+{% assign sorted_grants = site.grants | sort: "startdate" | reverse %}
+
+<div class="container mt-5">
+    <header class="research-area-hero">
+        <nav class="research-breadcrumb" aria-label="Breadcrumb">
+            <a href="{{ '/research-areas.html' | relative_url }}">
+                Research Areas
+            </a>
+            <span>›</span>
+            <span>{{ page.name }}</span>
+        </nav>
+
+        <div class="research-area-hero-grid">
+            <div class="research-area-hero-text">
+                <h1>{{ page.name }}</h1>
+                <p>
+                    {{ content | markdownify }}
+                </p>
+            </div>
+
+            <div class="research-area-hero-visual">
+                <img src="{{ '/assets/img/researchareas/' | append: page.image | relative_url }}"
+                     alt="{{ page.title }} image">
+            </div>
+        </div>
+    </header>
+
+    <nav class="research-section-nav">
+        <a href="#publications"
+           class="research-section-link active">
+            <i class="far fa-file-alt"></i>
+            <span>Publications</span>
+        </a>
+
+        <a href="#grants"
+           class="research-section-link">
+            <i class="fas fa-dollar-sign"></i>
+            <span>Grants</span>
+        </a>
+
+        <a href="#videos"
+           class="research-section-link">
+            <i class="far fa-play-circle"></i>
+            <span>Videos</span>
+        </a>
+
+        <a href="#news"
+           class="research-section-link">
+            <i class="far fa-newspaper"></i>
+            <span>News & Media</span>
+        </a>
+
+        <a href="#members"
+           class="research-section-link">
+            <i class="fas fa-users"></i>
+            <span>Lab Members</span>
+        </a>
+    </nav>
+
+    <div>
+        <div class="row gx-4">
+            <div class="col-lg-8">
+                <h3 class="section-header" id="publications">Publications</h3>
+
+                {% assign paper_counter = 0 %}
+                {% for publication in sorted_papers %}
+                {% if publication.research-areas contains page.slug %}
+                {% assign paper_counter = paper_counter | plus: 1 %}
+                {% assign is_peek = false %}
+                {% assign is_hidden = false %}
+
+                {% if paper_counter >= preview_limit and paper_counter < peek_limit %}
+                {% assign is_peek = true %}
+                {% endif %}
+
+                {% if paper_counter >= peek_limit %}
+                {% assign is_hidden = true %}
+                {% endif %}
+                <div class="publication-item
+                              {% if is_peek %}publication-peek{% endif %}
+                              {% if is_hidden %}publication-hidden{% endif %}
+                          ">
+                    {% include paper-article.html paper=publication %}
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% if paper_counter > preview_limit %}
+                <button class="show-more-btn"
+                        data-expanded="false"
+                        onclick="togglePapers(this)">
+                    Show all publications ↓
+                </button>
+                {% endif %}
+            </div>
+            <div class="col-lg-4">
+                <aside class="research-sidebar-section-people">
+                    <div class="sidebar-header">
+                        <h3 id="members">Lab Members</h3>
+                        <!--<a href="/people">View all people → </a>-->
+                    </div>
+
+                    <div class="sidebar-people-list">
+                        {% for member in site.people %}
+                        {% if member.research-areas contains page.slug %}
+                        <a class="sidebar-person"
+                           href="{{ member.url | relative_url }}">
+                            <img src="{{ '/assets/img/people/' | append: member.image | relative_url }}"
+                                 alt="{{ member.name }}">
+                            <div>
+                                <div class="sidebar-person-name">{{ member.name }}</div>
+                                <div class="sidebar-person-role">{{ member.title }}</div>
+                            </div>
+                        </a>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </aside>
+                <aside class="research-sidebar-section-grants">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-grant-heading" id="grants">Grants</h3>
+                    </div>
+                    <div>
+                        {% for grant in sorted_grants %}
+                        {% if grant.research-areas contains page.slug %}
+                        {% assign grant_counter = grant_counter | plus: 1 %}
+                        {% assign is_hidden = false %}
+
+                        {% if grant_counter > grant_preview_limit %}
+                        {% assign is_hidden = true %}
+                        {% endif %}
+
+
+                        <div class="sidebar-grant
+                            {% if is_hidden %}sidebar-grant-hidden{% endif %}
+                        ">
+                            <div class="sidebar-grant-name">{{ grant.title }}</div>
+                            <p class="pub-authors line-clamp">
+                                {% assign lastauthor = grant.authors | last %}
+                                {% assign firstauthor = grant.authors | first %}
+                                {% for authorid in grant.authors %}
+                                {% assign labauthor = site.people | where_exp: "item", "item.slug == authorid" | first %}
+                                {% if labauthor != nil %}<a href="{{ labauthor.url | relative_url }}">{{labauthor.name}}{% if authorid == firstauthor %} (PI){% else %}{% endif %}</a>{% if authorid != lastauthor %},{% else %}{% endif %}
+                                {% else %}
+                                {{authorid}}{% if authorid != lastauthor %}{% if authorid == firstauthor %} (PI){% else %}{% endif %},{% else %}{% endif %}
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                            <div class="sidebar-grant-details">{{ grant.sponsor }}</div>
+                            <div class="sidebar-grant-details">{{ grant.program }}</div>
+                            <div class="sidebar-grant-details">{{ grant.startdate | date: "%Y" }} - {{ grant.enddate | date: "%Y" }}</div>
+
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% if grant_counter > grant_preview_limit %}
+                    <button class="show-more-grants-btn"
+                            data-expanded="false"
+                            onclick="toggleGrants(this)">
+                        Show all grants ↓
+                    </button>
+                    {% endif %}
+                </aside>
+                <aside class="research-sidebar-section-grants">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-grant-heading">Featured Video</h3>
+                    </div>
+                    <div>
+                        {% include video-feature-card.html video=page.video title=page.videotitle description=page.videodescription %}
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+ <script>
+function togglePapers(button) {
+
+    const container = button.closest('.col-lg-8');
+    const items = container.querySelectorAll('.publication-item');
+    const previewLimit = 6;
+    const peekLimit = previewLimit + 1;
+    const expanded = button.dataset.expanded === 'true';
+
+    items.forEach((item, index) => {
+
+        item.classList.remove(
+            'publication-hidden',
+            'publication-peek'
+        );
+
+        if (!expanded) {
+            return;
+        }
+
+        if (index === previewLimit) {
+            item.classList.add('publication-peek');
+        }
+
+        if (index >= peekLimit) {
+            item.classList.add('publication-hidden');
+        }
+    });
+
+    if (expanded) {
+        button.dataset.expanded = 'false';
+        button.textContent =
+            'Show all publications ↓';
+    } else {
+        button.dataset.expanded = 'true';
+        button.textContent =
+            'Show fewer ↑';
+    }
+}</script>
+
+<script>function toggleGrants(button) {
+    const section = button.closest('.research-sidebar-section-grants');
+    const items = section.querySelectorAll('.sidebar-grant');
+
+    const previewLimit = 2;
+    const expanded = button.dataset.expanded === 'true';
+
+    items.forEach((item, index) => {
+        item.classList.remove('sidebar-grant-hidden');
+
+        if (expanded && index >= previewLimit) {
+            item.classList.add('sidebar-grant-hidden');
+        }
+    });
+
+    if (expanded) {
+        button.dataset.expanded = 'false';
+        button.textContent = 'Show all grants ↓';
+    } else {
+        button.dataset.expanded = 'true';
+        button.textContent = 'Show fewer ↑';
+    }
+}</script>

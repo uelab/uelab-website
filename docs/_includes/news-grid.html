@@ -1,0 +1,23 @@
+{% assign news_items = include.values | where: "feature", true | sort: 'date' | reverse %}
+
+<div class="container">
+    <h3 class="section-header p-2">{{ include.header }}</h3>
+    <div class="news-grid">
+
+        {% assign included_count = 0 %}
+        {% for value in news_items %}
+            {% if included_count < include.limit %}
+                {% include news-card.html news-item=value %}
+                {% assign included_count = included_count | plus: 1 %}
+            {% endif %}
+        {% endfor %}
+
+    </div>
+    {% if include.landing %}
+    <div class="row">
+        <div class="col-lg-12 py-2 px-5 d-flex justify-content-end">
+            <a href="{{ "/news.html" | relative_url }}">See All News →</a>
+        </div>
+    </div>
+    {% endif %}
+</div>

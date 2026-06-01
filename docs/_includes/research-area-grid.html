@@ -1,0 +1,107 @@
+{% assign research_areas = include.values | reverse %}
+
+<div class="container">
+        {% if include.landing %}
+        <h3 class="section-header p-2">{{ include.header }}</h3>
+        {% else %}
+        <h3 class="section-header p-2">{{ include.header }}</h3>
+        {% endif %}
+        <div class="carousel-wrapper position-relative">
+            <button class="carousel-btn carousel-prev" type="button">‹</button>
+
+            <div class="research-carousel d-flex overflow-auto">
+                {% for value in research_areas limit:include.limit %}
+                <div class="research-carousel-item">
+                    {% include research-area-card.html research-area=value %}
+                </div>
+                {% endfor %}
+            </div>
+
+            <button class="carousel-btn carousel-next" type="button">›</button>
+            <div class="carousel-dots"></div>
+        </div>
+        {% if include.landing %}
+        <div class="row">
+            <div class="col-lg-12 py-2 px-5 d-flex justify-content-end">
+                <a href="{{ "/research-areas.html" | relative_url }}">See All Research Areas →</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+        
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  document.querySelectorAll(".carousel-wrapper").forEach(function (wrapper) {
+
+    const carousel = wrapper.querySelector(".research-carousel");
+    const prev = wrapper.querySelector(".carousel-prev");
+    const next = wrapper.querySelector(".carousel-next");
+    const dotsContainer = wrapper.querySelector(".carousel-dots");
+
+    if (!carousel || !prev || !next || !dotsContainer) return;
+
+    const items = carousel.querySelectorAll(".research-carousel-item");
+
+    let currentIndex = 0;
+
+    // CREATE DOTS
+    items.forEach((_, index) => {
+      const dot = document.createElement("div");
+      dot.classList.add("carousel-dot");
+
+      if (index === 0) {
+        dot.classList.add("active");
+      }
+
+      dot.addEventListener("click", () => {
+        carousel.scrollTo({
+          left: items[index].offsetLeft,
+          behavior: "smooth"
+        });
+
+        updateDots(index);
+      });
+
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll(".carousel-dot");
+
+    function updateDots(index) {
+      dots.forEach(dot => dot.classList.remove("active"));
+
+      if (dots[index]) {
+        dots[index].classList.add("active");
+      }
+
+      currentIndex = index;
+    }
+
+    prev.addEventListener("click", function () {
+
+      currentIndex = Math.max(currentIndex - 1, 0);
+
+      carousel.scrollTo({
+        left: items[currentIndex].offsetLeft,
+        behavior: "smooth"
+      });
+
+      updateDots(currentIndex);
+    });
+
+    next.addEventListener("click", function () {
+
+      currentIndex = Math.min(currentIndex + 1, items.length - 1);
+
+      carousel.scrollTo({
+        left: items[currentIndex].offsetLeft,
+        behavior: "smooth"
+      });
+
+      updateDots(currentIndex);
+    });
+
+  });
+
+});</script>

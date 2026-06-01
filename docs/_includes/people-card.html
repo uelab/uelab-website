@@ -1,0 +1,39 @@
+<div class="card border mb-3 person-card
+    {% if include.member.dissertation-title != nil %}
+        has-dissertation
+    {% else %}
+        no-dissertation
+    {% endif %}"
+         style="width: 450px;">
+        <div class="row g-0 align-items-center">
+            <div class="col-12 col-md-3 d-flex justify-content-center align-items-center">
+                <a class="person-card-link" href="{{ include.member.url | relative_url }}">
+                <img class="rounded-circle d-block mx-auto"
+                     src="{{ '/assets/img/people/' | append: include.member.image | relative_url }}"
+                     alt="Person image">
+                </a>
+            </div>
+            <div class="col-12 col-md-9 text-center text-md-start">
+                <div class="card-body">
+                    <h6 class="card-title person-card-name">{{ include.member.name }}</h6>
+                    <p class="card-subtitle text-body-secondary">{{ include.member.title }}</p>
+                    <p class="card-subtitle text-body-secondary">{{ include.member.institution }}</p>
+                    <p class="card-subtitle text-body-secondary">{{ include.member.department }}</p>
+                    <a class="person-card-link stretched-link" href="{{ include.member.url | relative_url }}"></a>
+                </div>
+            </div>
+        </div>
+        
+        {% if include.member.dissertation-title != nil %}
+        <div class="card-footer dissertation-footer bg-transparent border-0 pt-0">
+            <p class="card-subtitle text-body-secondary fst-italic" style="margin-top:1.25rem;">
+                <b>Dissertation: </b> {{ include.member.dissertation-title }}
+            </p>
+            {% if include.member.first-position-title != nil %}
+            <p class="card-subtitle text-body-secondary fst-italic" style="margin-top:1.25rem;">
+                <b>First Position: </b> {{ include.member.first-position-title }}, {{ include.member.first-position-institution }}
+            </p>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>

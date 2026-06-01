@@ -1,0 +1,93 @@
+{% assign recent_papers = include.values | sort: "year" | reverse %}
+
+<!-- Obtain list of years papers were published -->
+{% assign paper_years = recent_papers | map: "year" %}
+{% assign paper_years = paper_years | uniq %}
+{% assign preview_limit = 2 %}
+{% assign peek_limit = preview_limit | plus: 1 %}
+
+<section class="list-page">
+    <div class="container publications-container">
+        <div class="publications-intro">
+            <div>
+                <h1 class="list-title">{{ include.header }}</h1>
+                <p class="publications-subtitle">
+                    The papers listed here are archival, peer-reviewed journal and conference publications. In computing-related disciplines, conferences are premiere publication venues with selectivity and impact matching or exceeding that of journals. If you are looking for a workshop or panel submission or another juried or lightly reviewed publication by members of the User Empowerment Lab, please reach out to uelab@uw.edu; we are always excited to share our work with interested readers.
+                </p>
+            </div>
+        </div>
+
+        <!-- Print each year and the papers published in that year -->
+        {% for year in paper_years %}
+        <section class="publication-year-section">
+            <h2 class="list-subtitle">{{year}}</h2>
+
+            {% assign papers_in_year = recent_papers | where: "year", year %}
+
+            <div class="publication-list">
+                {% for paper in papers_in_year %}
+
+                {% assign is_peek = false %}
+                {% assign is_hidden = false %}
+
+                {% if forloop.index0 >= preview_limit and forloop.index0 < peek_limit %}
+                {% assign is_peek = true %}
+                {% endif %}
+
+                {% if forloop.index0 >= peek_limit %}
+                {% assign is_hidden = true %}
+                {% endif %}
+
+                <div class="publication-item
+                      {% if is_peek %}publication-peek{% endif %}
+                      {% if is_hidden %}publication-hidden{% endif %}
+                  ">
+                    {% include paper-article.html paper=paper %}
+                </div>
+
+                {% endfor %}
+            </div>
+            {% if papers_in_year.size > preview_limit %}
+            <button class="show-more-btn"
+                    data-expanded="false"
+                    data-total="{{ papers_in_year.size }}"
+                    data-year="{{ year }}"
+                    onclick="togglePapers(this)">
+                Show all publications from {{ year }} ↓
+            </button>
+            {% endif %}
+        </section>
+        {% endfor %}
+
+    </div>
+</section>
+
+<script>function togglePapers(button) {
+  const section = button.closest('.publication-year-section');
+  const items = section.querySelectorAll('.publication-item');
+
+  const previewLimit = 3;
+  const peekLimit = previewLimit + 1;
+
+  const expanded = button.dataset.expanded === 'true';
+
+  items.forEach((item, index) => {
+    item.classList.remove('publication-hidden', 'publication-peek');
+
+    if (expanded) {
+      if (index === previewLimit) {
+        item.classList.add('publication-peek');
+      } else if (index >= peekLimit) {
+        item.classList.add('publication-hidden');
+      }
+    }
+  });
+
+  if (expanded) {
+    button.dataset.expanded = 'false';
+    button.textContent = `Show all ${button.dataset.total} papers from ${button.dataset.year} →`;
+  } else {
+    button.dataset.expanded = 'true';
+    button.textContent = 'Show fewer ↑';
+  }
+}</script>

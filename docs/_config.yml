@@ -1,0 +1,21 @@
+domain: alt-thompson.github.io
+url: https://alt-thompson.github.io
+baseurl: /sample-pages
+
+collections:
+  people:
+    output: true
+  research-areas:
+    output: true
+  publications:
+  grants:
+  news:
+    output: true
+
+plugins:
+  - jekyll-autoprefixer
+
+autoprefixer:
+  browsers:
+    - last 4 versions
+    - Safari > 2
