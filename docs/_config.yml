@@ -1,6 +1,5 @@
-domain: uelab.github.io
-url: https://uelab.github.io
-baseurl: /uelab-website
+url: "https://userempowerment.org"
+baseurl: ""
 
 collections:
   people:
