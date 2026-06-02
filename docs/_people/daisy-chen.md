@@ -12,6 +12,7 @@ title: PhD Student
 website: https://yixinchen.info/
 linkedin-link: https://www.linkedin.com/in/yixin-daisy-chen-022036253/
 cv-link: https://yixinchen.info/Daisy_CV.pdf
+email-link: mailto:yixin7@uw.edu
 research-areas: [dark-patterns, digital-youth, human-ai, human-relationships, smartphone-overuse]
 ---
 Daisy Chen is a first-year PhD student at the University of Washington Information School. Her research focuses on the ethical design of technology to support young people’s social and emotional well-being, especially that of teenagers and young adults.
