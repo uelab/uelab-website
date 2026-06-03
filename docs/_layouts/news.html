@@ -1,0 +1,62 @@
+---
+layout: default
+---
+{% assign sorted_news = site.news | sort: "date" | reverse %}
+{% assign highlights = sorted_news | slice: 0, 4 %}
+{% assign news_by_year = sorted_news | group_by_exp: "item", "item.date | date: '%Y'" %}
+
+<div class="container">
+    <h3 class="section-header p-2 news-section-header">Recent Highlights</h3>
+</div>
+{% include news-grid.html header="Recent Highlights" values=site.news limit=8 landing=false %}
+
+<div class="container">
+    <div class="news-section-divider"></div>
+    <h3 class="section-header p-2 news-section-header">All News</h3>
+    <div class="news-filter">
+        <button class="filter-button active" data-year="all">All</button>
+        {% for year in news_by_year %}
+        <button class="filter-button" data-year="{{ year.name }}">{{ year.name }}</button>
+        {% endfor %}
+    </div>
+    {% include news-list.html header="News" values=site.news %}
+</div>
+
+<script>
+    function updateLastVisibleTimelineItem() {
+        const items = Array.from(document.querySelectorAll('.simple-news-item'));
+
+        items.forEach(item => item.classList.remove('last-visible'));
+
+        const visibleItems = items.filter(item => {
+            return window.getComputedStyle(item).display !== 'none';
+        });
+
+        if (visibleItems.length > 0) {
+            visibleItems[visibleItems.length - 1].classList.add('last-visible');
+        }
+    }
+
+    document.querySelectorAll('.filter-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const year = button.dataset.year;
+
+            document.querySelectorAll('.filter-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            button.classList.add('active');
+
+            document.querySelectorAll('.simple-news-item').forEach(item => {
+                item.classList.toggle(
+                    'hidden',
+                    year !== 'all' && item.dataset.year !== year
+                );
+            });
+
+            updateLastVisibleTimelineItem();
+        });
+    });
+
+    updateLastVisibleTimelineItem();
+</script>

@@ -1380,6 +1380,21 @@ a:hover {
     min-width: 0;
 }
 
+.simple-news-item.last-visible .simple-news-marker::after {
+    display: none;
+}
+
+.news-section-divider {
+    height: 1px;
+    background: #e5ecea;
+    margin: 2rem 0;
+}
+
+.news-section-header {
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
 @media (max-width: 800px) {
     .simple-news-marker,
     .simple-news-marker::after {
@@ -1638,6 +1653,55 @@ a:hover {
 
 .news-photo img {
     transition: transform 0.15s ease;
+}
+
+.news-filter {
+    position: sticky;
+    top: calc(var(--navbar-height, 70px) + 0.75rem);
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 0.75rem 0 1.25rem;
+    background: white;
+    margin-top: 2rem;
+    margin-bottom: 0rem;
+}
+
+.filter-button {
+    border: 1px solid #b9d8d4;
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    background: white;
+    color: #006b61;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.filter-button.active,
+.filter-button:hover {
+    background: #006b61;
+    color: white;
+}
+
+.simple-news-item.hidden {
+    display: none;
+}
+
+.news-timeline {
+    position: relative;
+    max-width: 1000px;
+    margin-top: 1rem;
+}
+
+.news-timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 150px;
+    width: 2px;
+    background: #c9e3df;
 }
 
 // Modal 

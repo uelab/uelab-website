@@ -16,10 +16,8 @@
 
 <section class="news-list-page">
     <div class="container">
-        <h1 class="list-title">{{ include.header }}</h1>
-
         {% for news in recent_news %}
-        <article class="simple-news-item">
+        <article class="simple-news-item" data-year="{{ news.date | date: '%Y' }}">
             <div class="simple-news-date">
                 {{ news.date | date: "%b %Y" | upcase }}
             </div>

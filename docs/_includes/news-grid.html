@@ -1,7 +1,9 @@
 {% assign news_items = include.values | where: "feature", true | sort: 'date' | reverse %}
 
 <div class="container">
-    <h3 class="section-header p-2">{{ include.header }}</h3>
+    {% if include.landing %}
+        <h3 class="section-header p-2">{{ include.header }}</h3>
+    {% endif %}
     <div class="news-grid">
 
         {% assign included_count = 0 %}

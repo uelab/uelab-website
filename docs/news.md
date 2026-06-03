@@ -1,6 +1,4 @@
 ---
-layout: default
+layout: news
 title: News
 ---
-
-{% include news-list.html header="News" values=site.news %}
