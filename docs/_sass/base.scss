@@ -2030,6 +2030,17 @@ a:hover {
     filter: saturate(.95);
 }
 
+.footer-affiliates .footer-logo {
+    height: 3.5rem;
+    width: auto;
+}
+
+@media (max-width: 768px) {
+    .footer-affiliates .footer-logo {
+        max-height: 32px;
+        width: auto;
+    }
+}
 
 @media (max-width: 900px) {
 
