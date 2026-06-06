@@ -3,11 +3,20 @@ layout: default
 ---
 
 {% assign sorted_papers = site.publications | sort: "year" | reverse %}
-{% assign preview_limit = 8 %}
-{% assign peek_limit = preview_limit | plus: 1 %}
 {% assign grant_preview_limit = 2 %}
 {% assign grant_counter = 0 %}
 {% assign sorted_grants = site.grants | sort: "startdate" | reverse %}
+
+{% assign total_lab_members = 0 %}
+{% for member in site.people %}
+{% if member.research-areas contains page.slug %}
+{% assign total_lab_members = total_lab_members | plus: 1 %}
+{% endif %}
+{% endfor %}
+{% assign preview_limit = total_lab_members | divided_by: 2 %}
+{% assign preview_limit = preview_limit | plus: 5 %}
+{% assign peek_limit = preview_limit | plus: 1 %}
+
 
 <div class="container mt-5">
     <header class="research-area-hero">
@@ -41,28 +50,22 @@ layout: default
             <span>Publications</span>
         </a>
 
+        <a href="#members"
+           class="research-section-link">
+            <i class="fas fa-users"></i>
+            <span>Lab Members</span>
+        </a>
+
         <a href="#grants"
            class="research-section-link">
-            <i class="fas fa-dollar-sign"></i>
+            <i class="fas fa-award"></i>
             <span>Grants</span>
         </a>
 
         <a href="#videos"
            class="research-section-link">
             <i class="far fa-play-circle"></i>
-            <span>Videos</span>
-        </a>
-
-        <a href="#news"
-           class="research-section-link">
-            <i class="far fa-newspaper"></i>
-            <span>News & Media</span>
-        </a>
-
-        <a href="#members"
-           class="research-section-link">
-            <i class="fas fa-users"></i>
-            <span>Lab Members</span>
+            <span>Featured Video</span>
         </a>
     </nav>
 
@@ -105,7 +108,6 @@ layout: default
                 <aside class="research-sidebar-section-people">
                     <div class="sidebar-header">
                         <h3 id="members">Lab Members</h3>
-                        <!--<a href="/people">View all people → </a>-->
                     </div>
 
                     <div class="sidebar-people-list">
@@ -172,7 +174,7 @@ layout: default
                 </aside>
                 <aside class="research-sidebar-section-grants">
                     <div class="sidebar-header">
-                        <h3 class="sidebar-grant-heading">Featured Video</h3>
+                        <h3 class="sidebar-grant-heading" id="videos">Featured Video</h3>
                     </div>
                     <div>
                         {% include video-feature-card.html video=page.video title=page.videotitle description=page.videodescription %}
@@ -181,67 +183,68 @@ layout: default
             </div>
         </div>
     </div>
+</div>
+    <script>
+        function togglePapers(button) {
 
- <script>
-function togglePapers(button) {
+            const container = button.closest('.col-lg-8');
+            const items = container.querySelectorAll('.publication-item');
+            const previewLimit = 6;
+            const peekLimit = previewLimit + 1;
+            const expanded = button.dataset.expanded === 'true';
 
-    const container = button.closest('.col-lg-8');
-    const items = container.querySelectorAll('.publication-item');
-    const previewLimit = 6;
-    const peekLimit = previewLimit + 1;
-    const expanded = button.dataset.expanded === 'true';
+            items.forEach((item, index) => {
 
-    items.forEach((item, index) => {
+                item.classList.remove(
+                    'publication-hidden',
+                    'publication-peek'
+                );
 
-        item.classList.remove(
-            'publication-hidden',
-            'publication-peek'
-        );
+                if (!expanded) {
+                    return;
+                }
 
-        if (!expanded) {
-            return;
-        }
+                if (index === previewLimit) {
+                    item.classList.add('publication-peek');
+                }
 
-        if (index === previewLimit) {
-            item.classList.add('publication-peek');
-        }
+                if (index >= peekLimit) {
+                    item.classList.add('publication-hidden');
+                }
+            });
 
-        if (index >= peekLimit) {
-            item.classList.add('publication-hidden');
-        }
-    });
+            if (expanded) {
+                button.dataset.expanded = 'false';
+                button.textContent =
+                    'Show all publications ↓';
+            } else {
+                button.dataset.expanded = 'true';
+                button.textContent =
+                    'Show fewer ↑';
+            }
+        }</script>
 
-    if (expanded) {
-        button.dataset.expanded = 'false';
-        button.textContent =
-            'Show all publications ↓';
-    } else {
-        button.dataset.expanded = 'true';
-        button.textContent =
-            'Show fewer ↑';
-    }
-}</script>
+    <script>
+        function toggleGrants(button) {
+            const section = button.closest('.research-sidebar-section-grants');
+            const items = section.querySelectorAll('.sidebar-grant');
 
-<script>function toggleGrants(button) {
-    const section = button.closest('.research-sidebar-section-grants');
-    const items = section.querySelectorAll('.sidebar-grant');
+            const previewLimit = 2;
+            const expanded = button.dataset.expanded === 'true';
 
-    const previewLimit = 2;
-    const expanded = button.dataset.expanded === 'true';
+            items.forEach((item, index) => {
+                item.classList.remove('sidebar-grant-hidden');
 
-    items.forEach((item, index) => {
-        item.classList.remove('sidebar-grant-hidden');
+                if (expanded && index >= previewLimit) {
+                    item.classList.add('sidebar-grant-hidden');
+                }
+            });
 
-        if (expanded && index >= previewLimit) {
-            item.classList.add('sidebar-grant-hidden');
-        }
-    });
-
-    if (expanded) {
-        button.dataset.expanded = 'false';
-        button.textContent = 'Show all grants ↓';
-    } else {
-        button.dataset.expanded = 'true';
-        button.textContent = 'Show fewer ↑';
-    }
-}</script>
+            if (expanded) {
+                button.dataset.expanded = 'false';
+                button.textContent = 'Show all grants ↓';
+            } else {
+                button.dataset.expanded = 'true';
+                button.textContent = 'Show fewer ↑';
+            }
+        }</script>
