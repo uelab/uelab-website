@@ -14,15 +14,28 @@ layout: default
     <div class="news-section-divider"></div>
     <h3 class="section-header p-2 news-section-header">All News</h3>
     <div class="news-filter">
-        <button class="filter-button active" data-year="all">All</button>
+        <button class="filter-button" data-year="all">All</button>
+        {% assign first-button = true %}
         {% for year in news_by_year %}
-        <button class="filter-button" data-year="{{ year.name }}">{{ year.name }}</button>
+        <button class="filter-button {% if first-button %}active{% endif %}" data-year="{{ year.name }}">{{ year.name }}</button>
+        {% assign first-button = false %}
         {% endfor %}
     </div>
     {% include news-list.html header="News" values=site.news %}
 </div>
 
 <script>
+    function applyYearFilter(year) {
+        document.querySelectorAll('.simple-news-item').forEach(item => {
+            item.classList.toggle(
+                'hidden',
+                year !== 'all' && item.dataset.year !== year
+            );
+        });
+
+        updateLastVisibleTimelineItem();
+    }
+
     function updateLastVisibleTimelineItem() {
         const items = Array.from(document.querySelectorAll('.simple-news-item'));
 
@@ -46,17 +59,15 @@ layout: default
             });
 
             button.classList.add('active');
-
-            document.querySelectorAll('.simple-news-item').forEach(item => {
-                item.classList.toggle(
-                    'hidden',
-                    year !== 'all' && item.dataset.year !== year
-                );
-            });
-
-            updateLastVisibleTimelineItem();
+            applyYearFilter(year);
         });
     });
 
-    updateLastVisibleTimelineItem();
+    const activeButton = document.querySelector('.filter-button.active');
+
+    if (activeButton) {
+        applyYearFilter(activeButton.dataset.year);
+    } else {
+        updateLastVisibleTimelineItem();
+    }
 </script>

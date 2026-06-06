@@ -9,7 +9,7 @@
         {% assign included_count = 0 %}
         {% for value in news_items %}
             {% if included_count < include.limit %}
-                {% include news-card.html news-item=value %}
+                {% include news-card.html news-item=value landing=include.landing %}
                 {% assign included_count = included_count | plus: 1 %}
             {% endif %}
         {% endfor %}

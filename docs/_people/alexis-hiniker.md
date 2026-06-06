@@ -9,7 +9,6 @@ department: Information School
 role: Principal Investigator
 status: current
 image: alexishiniker.png
-website: https://alexishiniker.com
 cv-link: https://faculty.washington.edu/alexisr/AlexisHiniker-CV-Web.pdf
 linkedin-link: https://www.linkedin.com/in/alexis-hiniker-9a1b8a1a/
 email-link: mailto:alexisr@uw.edu

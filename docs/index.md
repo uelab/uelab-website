@@ -14,7 +14,7 @@ title: Home | User Empowerment Lab
 {% include paper-grid.html header="Recent Papers" values=site.publications limit=3 landing=true %}
 </section>
 
-<section class="section-alt">
+<section class="section">
 {% include news-grid.html header="Recent News" values=site.news limit=4 landing=true %}
 </section>
 

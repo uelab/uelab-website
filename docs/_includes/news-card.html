@@ -4,7 +4,7 @@
         {% assign card-url = include.news-item.full-coverage-link %}
     {% endif %}
 
-    <a href="{{ card-url }}" target="_blank" rel="noopener noreferrer" class="news-card-image-link">
+    <a href="{{ card-url }}" rel="noopener noreferrer" class="news-card-image-link">
         <img src="{{ '/assets/img/news/' | append: include.news-item.image | relative_url }}"
              alt="{{ include.news-item.title }}"
              class="news-card-image">
@@ -20,14 +20,14 @@
         </span>
     </div>
 
-    <div class="news-card-body">
+    <div class="news-card-body news-card-body-detail">
         <h3 class="news-card-title">
-            <a href="{{ card-url }}" target="_blank" rel="noopener noreferrer">
+            <a href="{{ card-url }}" rel="noopener noreferrer">
                 {{ include.news-item.title }}
             </a>
         </h3>
 
-        <a class="heavy-learn-more-link" href="{{ card-url }}" target="_blank" rel="noopener noreferrer">
+        <a class="heavy-learn-more-link" href="{{ card-url }}" rel="noopener noreferrer">
             Read more →
         </a>
     </div>
