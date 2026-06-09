@@ -9,8 +9,6 @@ image: ../people/longjieguo.jpg
 video: 
 videotitle:
 videodescription:
-full-coverage-link: 
-full-coverage-description:
 photos:
 expand: false
 feature: false
