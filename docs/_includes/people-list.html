@@ -46,7 +46,10 @@
 
             {% include people-card-grid.html header="PhD Advisees" values=phd-alumni %}
             {% include people-card-grid.html header="Graduate Research Assistants" values=grad-alumni %}
-            {% include people-columns.html header="Undergraduate Research Assistants" values=undergrad-alumni %}
+        </section>
+        <section class="people-section">
+            <h2 class="list-subtitle">Past and Present Undergraduate Research Assistants</h2>
+            {% include people-columns.html values=undergrad-alumni %}
         </section>
     </div>
 </section>
