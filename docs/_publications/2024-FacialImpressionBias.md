@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.5555/3716662.3716804
 image: facialImpression.avif
 year: 2024
+date: 2024-10-21
 award:
 acceptance-rate: 38%
 ---

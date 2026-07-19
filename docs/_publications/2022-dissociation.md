@@ -12,6 +12,7 @@ video: https://www.youtube.com/watch?v=s8Zf8bRB1lw
 code: https://github.com/uelab/normative-dissociation
 image: dissociation.avif
 year: 2022
+date: 2022-04-30
 award: 
 acceptance-rate: 24.7%
 ---

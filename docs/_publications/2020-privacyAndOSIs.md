@@ -11,6 +11,7 @@ doi: 10.2478/popets-2020-0057
 video: https://www.youtube.com/watch?v=H7TWTVpHIaw
 image: privacyAndOSIs.avif
 year: 2020
+date: 2020-07-15
 award: 
 acceptance-rate: 19%
 ---

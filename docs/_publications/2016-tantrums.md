@@ -11,6 +11,7 @@ doi: 10.1145/2858036.2858278
 materials:
 image: tantrums.avif
 year: 2016
+date: 2016-05-07
 award: "Best paper honorable mention (top 5%)"
 acceptance-rate: 23%
 ---

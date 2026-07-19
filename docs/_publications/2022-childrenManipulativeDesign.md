@@ -10,5 +10,6 @@ publicationtype:
 doi: 10.1001/jamanetworkopen.2022.17641
 image: childrenManipulativeDesign.avif
 year: 2022
+date: 2022-06-01
 award: 
 ---

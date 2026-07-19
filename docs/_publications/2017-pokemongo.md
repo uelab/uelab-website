@@ -11,5 +11,6 @@ doi: 10.1145/3025453.3025761
 materials:
 image: pokemongo.avif
 year: 2017
+date: 2017-05-06
 acceptance-rate: 25%
 ---

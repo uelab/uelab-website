@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3706598.371315
 image: belovedCommunity.avif
 year: 2025
+date: 2025-04-26
 award: Best paper honorable mention (top 5%)
 video: https://dl.acm.org/doi/suppl/10.1145/3706598.3713157/suppl_file/pn3709-talk-video.mp4
 acceptance-rate: 25%

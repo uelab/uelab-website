@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1609/aies.v8i3.36751
 image: nonviolentDesign.avif
 year: 2025
+date: 2025-10-20
 award: 
 acceptance-rate: 32%
 ---

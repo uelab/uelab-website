@@ -12,5 +12,6 @@ materials:
 video: https://www.youtube.com/watch?v=meSgqYvH9c0
 image: gogogames.avif
 year: 2013
+date: 2013-06-24
 acceptance-rate: 33%
 ---

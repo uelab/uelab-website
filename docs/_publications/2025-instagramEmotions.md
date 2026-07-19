@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3706598.3713844
 image: instagramEmotions.avif
 year: 2025
+date: 2025-04-26
 award: 
 acceptance-rate: 25%
 ---

@@ -8,8 +8,8 @@ image: ai4mh2026.jpeg
 video: https://www.youtube.com/embed/WUY1tLEIg68?t=5253 
 videotitle: Friend or Frenemy? 
 videodescription: AI Chatbots and Teen Mental Health
-full-coverage-link: https://med.stanford.edu/psychiatry/special-initiatives/ai4mh/events/symposium2026.html
-full-coverage-description: See the full program for AI4MH
+full-coverage-link: https://med.stanford.edu/news/all-news/2026/06/stanford-health-ai-week.html
+full-coverage-description: See Stanford Medicine's summary of the week-long AI4MH event
 expand: true
 feature: true
 photos: [2026-06-ai4mh1.jpeg, 2026-06-ai4mh2.jpeg]

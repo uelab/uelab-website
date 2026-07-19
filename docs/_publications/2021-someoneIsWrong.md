@@ -11,5 +11,6 @@ doi: 10.1145/3449230
 video: https://www.youtube.com/watch?v=pdgdVzhY0CQ
 image: someoneIsWrong.avif
 year: 2021
+date: 2021-04-15
 award: 
 ---

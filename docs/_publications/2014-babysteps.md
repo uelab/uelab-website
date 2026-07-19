@@ -12,5 +12,6 @@ video: https://youtu.be/2XUoqqVrXz8?si=sg9rapR14zAfVVhq
 materials:
 image: babysteps.avif
 year: 2014
+date: 2014-04-26
 acceptance-rate: 23%
 ---

@@ -11,5 +11,6 @@ doi: 10.1145/2771839.2771851
 materials:
 image: touchscreenprompts.avif
 year: 2015
+date: 2015-06-21
 acceptance-rate: 23%
 ---

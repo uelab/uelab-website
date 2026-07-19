@@ -11,6 +11,7 @@ doi: 10.1145/3202185.3202759
 materials:
 image: stampplate.avif
 year: 2018
+date: 2018-06-19
 award:
 acceptance-rate: "29%"
 ---

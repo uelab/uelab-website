@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3313831.3376344
 image: echoParenting.avif
 year: 2020
+date: 2020-04-25
 award: 
 acceptance-rate: "24%"
 ---

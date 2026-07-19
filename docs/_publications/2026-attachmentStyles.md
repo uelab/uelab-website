@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3805689.3812418
 image: attachmentResearchFutures.png
 year: 2026
+date: 2026-06-25
 award: 
 acceptance-rate:
 ---

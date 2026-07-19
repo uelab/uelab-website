@@ -9,7 +9,9 @@ research-areas: []
 publicationtype: 
 doi: 10.1145/3772318.3791504
 image: abilityAudits.png
+video: https://youtu.be/H6K3y5yhUmA?t=720
 year: 2026
+date: 2026-04-13
 award: 
 acceptance-rate: 25%
 ---

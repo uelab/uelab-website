@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3628516.3655812
 image: instagramWellbeing.avif
 year: 2024
+date: 2024-06-19
 acceptance-rate: 29%
 award: 
 ---

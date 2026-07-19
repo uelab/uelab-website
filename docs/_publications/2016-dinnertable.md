@@ -11,5 +11,6 @@ doi: 10.1145/2818048.2819940
 materials:
 image: dinnertable.avif
 year: 2016
+date: 2016-02-27
 acceptance-rate: 25%
 ---

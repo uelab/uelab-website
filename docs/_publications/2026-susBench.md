@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3742413.3789111
 image: susbench
 year: 2026
+date: 2026-03-23
 award: 
 acceptance-rate: 20%
 ---

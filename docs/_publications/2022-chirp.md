@@ -12,6 +12,7 @@ video: https://www.youtube.com/watch?v=g6PUeE0RN2Y
 code: https://github.com/uelab/Chirp
 image: chirp.avif
 year: 2022
+date: 2022-04-30
 award: 
 acceptance-rate: 24.7%
 ---

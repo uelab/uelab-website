@@ -10,5 +10,6 @@ publicationtype:
 doi: 10.1080/10447318.2024.2436038
 image: alignedCoDesign.avif
 year: 2024
+date: 2024-12-10
 award: 
 ---

@@ -12,5 +12,6 @@ video: https://www.youtube.com/watch?v=sBjW3fICRGQ
 materials:
 image: mytime.avif
 year: 2016
+date: 2016-05-07
 acceptance-rate: 23%
 ---

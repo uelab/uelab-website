@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3294109.3295645
 image: mealtimePrototypes.avif
 year: 2019
+date: 2019-03-17
 award: 
 acceptance-rate: "34%"
 ---

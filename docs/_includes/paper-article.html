@@ -3,7 +3,7 @@
     <div class="pub-thumbnail">
         <a href="{{ include.paper.download-link }}" target="_blank" class="pub-thumbnail-link">
             <img src="{{ '/assets/img/papers/' | append: include.paper.image | relative_url }}"
-                 alt="{{include.paper.title}}"
+                 alt="{{ include.paper.title | escape }}"
                  class="pub-thumbnail-image">
         </a>
     </div>

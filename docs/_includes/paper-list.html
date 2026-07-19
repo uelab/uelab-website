@@ -1,4 +1,4 @@
-{% assign recent_papers = include.values | sort: "year" | reverse %}
+{% assign recent_papers = include.values | sort: "date" | reverse %}
 
 <!-- Obtain list of years papers were published -->
 {% assign paper_years = recent_papers | map: "year" %}

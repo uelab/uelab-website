@@ -11,6 +11,7 @@ doi: 10.1145/3132525.3132551
 materials:
 image: gogogameseval.avif
 year: 2017
+date: 2017-10-31
 award: "Best paper honorable mention (top seven papers)"
 acceptance-rate: 22%
 ---

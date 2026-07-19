@@ -10,5 +10,6 @@ publicationtype:
 doi: 10.1145/3686918
 image: temporalModel.avif
 year: 2024
+date: 2024-11-01
 award: 
 ---

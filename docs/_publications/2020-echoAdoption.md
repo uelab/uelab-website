@@ -11,5 +11,6 @@ doi: 10.1145/3380993
 video: https://www.youtube.com/watch?v=FnGgumqhJnY
 image: echoAdoption.avif
 year: 2020
+date: 2020-03-30
 award: 
 ---

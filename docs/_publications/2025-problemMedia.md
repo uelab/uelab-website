@@ -10,5 +10,6 @@ publicationtype:
 doi: 10.54501/jots.v3i1.258
 image: problemMedia.avif
 year: 2025
+date: 2025-09-25
 award: 
 ---

@@ -12,6 +12,7 @@ materials:
 video: https://youtu.be/UWzNxKXA4_Q
 image: planandplay.avif
 year: 2017
+date: 2017-06-19
 award: "Best paper honorable mention (top three papers)"
 acceptance-rate: 21%
 ---

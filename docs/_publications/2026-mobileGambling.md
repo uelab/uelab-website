@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1542/peds.2025-073040
 image: mobileGambling.avif
 year: 2026
+date: 2026-03-01
 award: 
 acceptance: 
 ---

@@ -11,6 +11,7 @@ doi: 10.1145/3357236.3395444
 video: https://www.youtube.com/watch?v=wEskur-aKEU
 image: mindfulness.avif
 year: 2020
+date: 2020-06-15
 award: 
 acceptance-rate: "24%"
 ---

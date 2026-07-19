@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3643834.3661578
 image: functionalFear.avif
 year: 2024
+date: 2024-06-10
 award: 
 acceptance-rate: 27%
 ---

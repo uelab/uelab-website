@@ -12,6 +12,7 @@ video: https://youtu.be/_RqiqFuqBKQ
 materials:
 image: cocosvideos.avif
 year: 2018
+date: 2018-04-21
 award: "Best paper honorable mention (top 5%)"
 acceptance-rate: 25.7%
 ---

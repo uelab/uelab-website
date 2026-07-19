@@ -11,5 +11,6 @@ doi: 10.1145/3173574.3174233
 materials:
 image: letsplay.avif
 year: 2018
+date: 2018-04-21
 acceptance-rate: "25.7%"
 ---

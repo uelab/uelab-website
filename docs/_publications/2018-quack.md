@@ -11,7 +11,7 @@ doi: 10.1145/3202185.3202749
 materials:
 image: quack.avif
 year: 2018
-date: 2018-01-01
+date: 2018-06-19
 award:
 acceptance-rate: "29%"
 ---

@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3585088.3589371
 image: wellbeing.avif
 year: 2023
+date: 2023-06-19
 award:
 acceptance-rate: 29%
 ---

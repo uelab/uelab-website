@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3411764.3445242
 image: artboardUserStudy.avif
 year: 2021
+date: 2021-05-08
 award: 
 video: https://youtu.be/pHF-UU_f6_0?si=mCrK48DB2yYj8qU3
 acceptance-rate: "26%"

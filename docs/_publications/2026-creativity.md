@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3772318.3791329
 image: creativityAI.jpg
 year: 2026
+date: 2026-04-13
 award: 
 acceptance-rate: 25%
 ---

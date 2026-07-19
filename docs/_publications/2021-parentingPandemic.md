@@ -11,6 +11,7 @@ doi: 10.1145/3479546
 video: https://www.youtube.com/watch?v=SrkACSynRRw
 image: parentingPandemic.avif
 year: 2021
+date: 2021-11-12
 award: 
 acceptance-rate: 
 ---

@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3772318.3791685
 image: novelty
 year: 2026
+date: 2026-04-13
 award: Best paper honorable mention (top 5%)
 acceptance-rate: 25%
 ---

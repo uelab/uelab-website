@@ -11,6 +11,7 @@ doi: 10.1145/3290605.3300238
 code: https://github.com/uelab/KidsRecorder
 image: anchoredAudioSampling.avif
 year: 2019
+date: 2019-05-04
 award: Best paper award (top 1%)
 acceptance-rate: "23%"
 ---

@@ -10,6 +10,7 @@ publicationtype:
 doi: 10.1145/3628516.3655808
 image: kidsGamesDissociation.avif
 year: 2024
+date: 2024-06-19
 award: 
 acceptance-rate: 29%
 ---
