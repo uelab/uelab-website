@@ -9,6 +9,7 @@ research-areas: [human-ai, human-relationships, user-privacy]
 publicationtype: 
 doi: 10.1145/3805689.3812418
 image: attachmentResearchFutures.png
+video: https://youtu.be/ogtNLoE1OAg
 year: 2026
 date: 2026-06-25
 award: 
